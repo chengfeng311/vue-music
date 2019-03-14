@@ -6,7 +6,7 @@
 			</div>
 			<div class="swiper-pagination"  slot="pagination"></div>
 		</swiper>
-		<div class="recommend-list">
+		<div class="recommand-list">
 			<h1 class="list-title">热门歌单推荐</h1>
 			<ul>
 				<li class="item" v-for="(item, index) in discList" :key="index">
@@ -77,9 +77,32 @@ export default {
 	.swiper-container
 		.swiper-slide
 			a
-				width: 100%
+				width 100%
 			img
-				width: 100%
+				width 100%
 		.swiper-pagination >>> .swiper-pagination-bullet-active
-			background: $color-text-ll
+			background $color-text-ll
+	.recommand-list
+		h1
+			height 40px
+			line-height 40px
+			text-align center
+			color $color-theme
+		.item
+			display flex
+			justify-content space-around
+			.icon
+				flex 1
+				padding-left 20px
+			.text
+				display flex
+				flex: 3
+				flex-direction column
+				justify-content space-around
+				font-size $font-size-small
+				.name
+					color $color-text-ll
+				.desc
+					color $color-text-l
+
 </style>
