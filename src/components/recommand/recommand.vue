@@ -1,27 +1,29 @@
 <template>
   <div class="recommand">
-		<swiper :options="swiperOption">
-			<div class="swiper-slide" v-for="(item, index) in slidesData" :key="index">
-				<a :href="item.linkUrl"><img :src="item.picUrl"></a>
+		<scroll :data="discList" class="recommand-content">
+			<div>
+				<swiper :options="swiperOption">
+					<div class="swiper-slide" v-for="(item, index) in slidesData" :key="index">
+						<a :href="item.linkUrl"><img :src="item.picUrl"></a>
+					</div>
+					<div class="swiper-pagination"  slot="pagination"></div>
+				</swiper>
+				<div class="recommand-list">
+					<h1 class="list-title">热门歌单推荐</h1>
+						<ul>
+							<li class="item" v-for="(item, index) in discList" :key="index">
+								<div class="icon">
+									<img width="60" height="60" v-lazy="item.imgurl" alt="">
+								</div>
+								<div class="text">
+									<h2 class="name">{{item.creator.name}}</h2>
+									<p class="desc">{{item.dissname}}</p>
+								</div>
+							</li>
+						</ul>
+				</div>
 			</div>
-			<div class="swiper-pagination"  slot="pagination"></div>
-		</swiper>
-		<div class="recommand-list">
-			<h1 class="list-title">热门歌单推荐</h1>
-			<scroll :data="discList" ref="scroll" class="wrapper">
-				<ul>
-					<li class="item" v-for="(item, index) in discList" :key="index">
-						<div class="icon">
-							<img width="60" height="60" v-lazy="item.imgurl" alt="">
-						</div>
-						<div class="text">
-							<h2 class="name">{{item.creator.name}}</h2>
-							<p class="desc">{{item.dissname}}</p>
-						</div>
-					</li>
-				</ul>
-			</scroll>
-		</div>
+		</scroll>
   </div>
 </template>
 
@@ -51,11 +53,11 @@ export default {
     scroll,
   },
   created() {
-    this.getRecommand()
+    this.getSlides()
     this.getDiscList()
   },
   methods: {
-    getRecommand() {
+    getSlides() {
       getRecommand().then((data) => {
         if (data.code === ERR_OK) {
           this.slidesData = data.data.slider
@@ -78,6 +80,13 @@ export default {
 @import "~common/stylus/variable"
 
 .recommand
+	position fixed
+	width 100%
+	top 88px
+	bottom 0
+	.recommand-content
+		height 100%
+		overflow hidden
 	.swiper-container
 		.swiper-slide
 			a
@@ -86,7 +95,8 @@ export default {
 				width 100%
 		.swiper-pagination >>> .swiper-pagination-bullet-active
 			background $color-text-ll
-			width 24px
+			width 16px
+			border-radius: 4px
 	.recommand-list
 		h1
 			height 40px
