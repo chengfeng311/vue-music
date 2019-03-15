@@ -8,17 +8,19 @@
 		</swiper>
 		<div class="recommand-list">
 			<h1 class="list-title">热门歌单推荐</h1>
-			<ul>
-				<li class="item" v-for="(item, index) in discList" :key="index">
-					<div class="icon">
-						<img width="60" height="60" v-lazy="item.imgurl" alt="">
-					</div>
-					<div class="text">
-						<h2 class="name">{{item.creator.name}}</h2>
-						<p class="desc">{{item.dissname}}</p>
-					</div>
-				</li>
-			</ul>
+			<scroll :data="discList" ref="scroll" class="wrapper">
+				<ul>
+					<li class="item" v-for="(item, index) in discList" :key="index">
+						<div class="icon">
+							<img width="60" height="60" v-lazy="item.imgurl" alt="">
+						</div>
+						<div class="text">
+							<h2 class="name">{{item.creator.name}}</h2>
+							<p class="desc">{{item.dissname}}</p>
+						</div>
+					</li>
+				</ul>
+			</scroll>
 		</div>
   </div>
 </template>
@@ -26,6 +28,7 @@
 <script type="text/ecmascript-6">
 import { getRecommand, getDiscList } from 'api/recommand'
 import { swiper } from 'vue-awesome-swiper'
+import scroll from 'base/scroll/scroll'
 
 const ERR_OK = 0
 
@@ -45,6 +48,7 @@ export default {
   },
   components: {
     swiper,
+    scroll,
   },
   created() {
     this.getRecommand()
@@ -82,6 +86,7 @@ export default {
 				width 100%
 		.swiper-pagination >>> .swiper-pagination-bullet-active
 			background $color-text-ll
+			width 24px
 	.recommand-list
 		h1
 			height 40px

@@ -49,6 +49,32 @@ module.exports = {
     'semi': ['error', 'never'],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     "no-tabs": 0,
+    // 每行最多多少字符
     "max-len": "off",
+    // 下划线在变量命名中很常见
+    'no-underscore-dangle': 'off',
+    // 禁止函数在不同分支返回不同类型的值
+    'consistent-return': 'off',
+    // 禁止无用的表达式
+    'no-unused-expressions': [
+      'error',
+      {
+        allowShortCircuit: true,
+        allowTernary: true,
+        allowTaggedTemplates: true
+      }
+    ],
+    // @off  apply 很常用
+    'prefer-spread': 'off',
+    // 必须使用 ...args 而不是 arguments
+    // @off 没必要强制要求
+    'prefer-rest-params': 'off',
+    // 禁止使用未定义的变量
+    'no-undef': [
+      'error',
+      {
+        typeof: false
+      }
+    ],
   }
 }
