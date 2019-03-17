@@ -1,6 +1,6 @@
 <template>
   <div class="recommand">
-		<scroll :data="discList" class="recommand-content">
+		<scroll :data="discList" class="recommand-content" :click="true">
 			<div>
 				<swiper :options="swiperOption">
 					<div class="swiper-slide" v-for="(item, index) in slidesData" :key="index">
@@ -21,6 +21,7 @@
 								</div>
 							</li>
 						</ul>
+						<loading v-if="!discList.length"></loading>
 				</div>
 			</div>
 		</scroll>
@@ -31,6 +32,7 @@
 import { getRecommand, getDiscList } from 'api/recommand'
 import { swiper } from 'vue-awesome-swiper'
 import scroll from 'base/scroll/scroll'
+import loading from 'base/loading/loading'
 
 const ERR_OK = 0
 
@@ -51,6 +53,7 @@ export default {
   components: {
     swiper,
     scroll,
+    loading,
   },
   created() {
     this.getSlides()

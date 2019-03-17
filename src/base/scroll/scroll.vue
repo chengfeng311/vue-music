@@ -13,6 +13,10 @@ export default {
       type: Number,
       default: 1,
     },
+    click: {
+      type: Boolean,
+      default: false,
+    },
     data: {
       type: Array,
       defalut: [],
@@ -34,6 +38,7 @@ export default {
       }
       this.scroll = new BScroll(this.$refs.wrapper, {
         probeType: this.probeType,
+        click: this.click,
       })
 
       if (this.listenScroll) {
