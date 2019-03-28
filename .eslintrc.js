@@ -76,5 +76,10 @@ module.exports = {
         typeof: false
       }
     ],
+    // 禁止使用++或--
+    'no-plusplus': 'off',
+    // 禁止使用 continue
+    // @off continue 很常用
+    'no-continue': 'off',
   }
 }

@@ -33,8 +33,7 @@ import { getRecommand, getDiscList } from 'api/recommand'
 import { swiper } from 'vue-awesome-swiper'
 import scroll from 'base/scroll/scroll'
 import loading from 'base/loading/loading'
-
-const ERR_OK = 0
+import { ERR_OK } from 'api/config'
 
 export default {
   data() {
@@ -69,7 +68,7 @@ export default {
     },
     getDiscList() {
       getDiscList().then((data) => {
-        console.log(data)
+        // console.log(data)
         if (data.code === ERR_OK) {
           this.discList = data.data.list
         }
@@ -115,6 +114,7 @@ export default {
 				padding-left 20px
 			.text
 				display flex
+				height 60px
 				flex: 3
 				flex-direction column
 				justify-content space-around
