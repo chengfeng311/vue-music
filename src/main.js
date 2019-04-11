@@ -6,6 +6,7 @@ import FastClick from 'fastclick'
 import Vue from 'vue'
 import App from './App'
 import router from './router/index'
+import store from './store'
 
 const loadingImg = require('common/image/default.png')
 
@@ -20,5 +21,6 @@ Vue.use(VueLazyload, {
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App),
 })

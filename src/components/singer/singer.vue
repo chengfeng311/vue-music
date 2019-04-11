@@ -1,10 +1,12 @@
 <template>
   <div class="singer">
       <list-view :list="singerList" @select="selectSinger"></list-view>
+      <router-view></router-view>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import { mapMutations } from 'vuex'
 import listView from 'base/list-view/list-view'
 import { getSingerList } from 'api/singer'
 import Singer from 'common/js/singer'
@@ -23,6 +25,9 @@ export default {
     this.getSingerList()
   },
   methods: {
+    ...mapMutations({
+      setSinger: 'SET_SINGER',
+    }),
     getSingerList() {
       getSingerList().then((data) => {
         if (data.code === ERR_OK) {
@@ -74,7 +79,10 @@ export default {
       return ret
     },
     selectSinger(singer) {
-      this.$router.push(`singer/${singer.id}`)
+      this.$router.push({
+        path: `/singer/${singer.id}`,
+      })
+      this.setSinger(singer)
     },
   },
   components: {
