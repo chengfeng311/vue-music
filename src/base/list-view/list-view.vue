@@ -17,7 +17,7 @@
             </div>
         </li>
     </ul>
-    <div class="fixed-title title" ref="fixedTitle">{{curTitle}}</div>
+    <div class="fixed-title title" ref="fixedTitle" v-show="scrollY<0">{{curTitle}}</div>
     <ul class="letter-list">
         <li class="letter"
             :class="{'curIndex': curIndex == index}"
